@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TrabajoIntegrador:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TrabajoIntegrador_jar</output-path>
+    <root id="archive" name="TrabajoIntegrador.jar">
+      <element id="module-output" name="TrabajoIntegrador" />
+    </root>
+  </artifact>
+</component>
