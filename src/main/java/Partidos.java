@@ -4,6 +4,14 @@ public class Partidos {
     Integer goles1;
     Integer goles2;
 
+    public Equipo getEquipo1() {
+        return equipo1;
+    }
+
+    public Equipo getEquipo2() {
+        return equipo2;
+    }
+
     public Partidos(Equipo equipo1, Equipo equipo2, Integer goles1, Integer goles2) {
 
         this.equipo1 = equipo1;
