@@ -2,21 +2,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ronda {
-    private Integer rondaid;
+    private String rondaid;
     private List<Partidos> partidos;
 
     public Ronda(){}
 
-    public Ronda(Integer id) {
+    public Ronda(String id) {
         this.rondaid=id;
         this.partidos = new ArrayList<Partidos>();
     }
 
-    public Integer getRondaid() {
+    public String getRondaid() {
         return rondaid;
     }
 
-    public void setRondaid(Integer rondaid) {
+    public void setRondaid(String rondaid) {
         this.rondaid = rondaid;
     }
 

@@ -13,12 +13,12 @@ public class Main {
         Path archResultados = Path.of(args[0]);
         Path archPronosticos = Path.of(args[1]);
 
-        List<Equipo> eq = new ArrayList<Equipo>();
+     //   List<Equipo> eq = new ArrayList<Equipo>();
         List<Ronda> rondas = new ArrayList<Ronda>();
         List<Pronosticos> pron = new ArrayList<Pronosticos>();
         List<Participante> participante = new ArrayList<Participante>();
 
-        LeerPartidos(archResultados, eq, rondas);
+        LeerPartidos(archResultados, rondas);
         LeerPronosticos(archPronosticos, pron, participante);
 
 
@@ -36,7 +36,7 @@ public class Main {
                         Participante player = Main.buscarParticipantePorId(pronostico.getParticipante().getIdparticipante() , participante);
                         player.sumaPuntos(pronostico.puntos(partido));
                         sumatotal += pronostico.puntos(partido);
-                        System.out.println(pronostico.resultado + " " + partido.resultado() + "pronostico " + pronostico.getEquipo1().getNombre() + " " +
+                        System.out.println(pronostico.getParticipante().getNombre()+pronostico.resultado + " " + partido.resultado() + "pronostico " + pronostico.getEquipo1().getNombre() + " " +
                                 pronostico.getEquipo2().getNombre() + " ressultado " + partido.getEquipo1().getNombre() + " " + partido.getEquipo2().getNombre());
                     }
                 }
@@ -47,7 +47,7 @@ public class Main {
         //  System.out.println();
     }
 
-    private static void LeerPartidos(Path archResultados, List<Equipo> eq, List<Ronda> ronda) {
+    private static void LeerPartidos(Path archResultados,  List<Ronda> ronda) {
         try {
             List<String> lineasArch = Files.readAllLines(archResultados);
             boolean primero = true;
@@ -58,18 +58,18 @@ public class Main {
                     if (!linea.isBlank()) {
                         String[] split = linea.split(";");
                         Equipo eq1 = new Equipo(split[3], split[4], split[2]);
-                        eq.add(eq1);
+
                         repoEquipo.put(split[2], eq1);
                         Equipo eq2 = new Equipo(split[8], split[9], split[7]);
-                        eq.add(eq2);
+
                         repoEquipo.put(split[7], eq2);
-                        Integer r = 1;
+                        String rondapartido = split[0];
                         Ronda ron = ronda.stream()
-                                .filter(rond -> r.equals(rond.getRondaid()))
+                                .filter(rond -> rondapartido.equals(rond.getRondaid()))
                                 .findAny()
                                 .orElse(null);
                         if (ron == null) {
-                            Ronda ron1 = new Ronda(1);
+                            Ronda ron1 = new Ronda(rondapartido);
                             ron1.agregarpartidos(new Partidos(eq1, eq2, Integer.valueOf(split[5]), Integer.valueOf(split[6])));
                             ronda.add(ron1);
                         } else {
