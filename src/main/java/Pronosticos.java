@@ -1,11 +1,18 @@
 public class Pronosticos {
     private Equipo equipo1;
-    String gana1;
-    String empata;
-    String gana2;
+    private String gana1;
+    private String empata;
+    private String gana2;
     private Equipo equipo2;
 
-    Main.Resultadosenum resultado;
+    public Participante getParticipante() {
+        return participante;
+    }
+
+    private Participante participante;
+
+    Resultadosenumerados resultado;
+
 
     public Equipo getEquipo2() {
         return equipo2;
@@ -13,29 +20,29 @@ public class Pronosticos {
     public Equipo getEquipo1() {
         return equipo1;
     }
-    public Pronosticos(Equipo equipo1, String gana1, String empata, String gana2, Equipo equipo2) {
+    public Pronosticos(Equipo equipo1, String gana1, String empata, String gana2, Equipo equipo2,Participante participante) {
         this.equipo1 = equipo1;
         //this.gana1 = gana1;
         //this.empata = empata;
         //this.gana2 = gana2;
         this.equipo2 = equipo2;
-
+        this.participante=participante;
 
         if (gana1.equals("X")){
-            this.resultado= Main.Resultadosenum.GANA;
+            this.resultado= Resultadosenumerados.GANA;
         }
         if (gana2.equals("X")){
-            this.resultado= Main.Resultadosenum.PIERDE;
+            this.resultado= Resultadosenumerados.PIERDE;
         }
         if( empata.equals("X")){
-            this.resultado= Main.Resultadosenum.EMPATA;
+            this.resultado= Resultadosenumerados.EMPATA;
         }
 
     }
     public int puntos(Partidos partido){
 
         int puntos = 0;
-        Main.Resultadosenum resultadoRealParaEquipo = partido.resultado();
+        Resultadosenumerados resultadoRealParaEquipo = partido.resultado();
         if(resultadoRealParaEquipo == this.resultado) {
             puntos = 1;
         }
