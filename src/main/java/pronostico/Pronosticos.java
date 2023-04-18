@@ -1,19 +1,22 @@
+package pronostico;
+
 public class Pronosticos {
     private Equipo equipo1;
-    private String gana1;
-    private String empata;
-    private String gana2;
+    //private String gana1;
+    //private String empata;
+    //private String gana2;
     private Equipo equipo2;
+    private Participante participante;
+
+  /*  public Resultadosenumerados getResultado() {
+        return resultado;
+    }
+*/
+    private Resultadosenumerados resultado;
 
     public Participante getParticipante() {
         return participante;
     }
-
-    private Participante participante;
-
-    Resultadosenumerados resultado;
-
-
     public Equipo getEquipo2() {
         return equipo2;
     }
@@ -39,12 +42,12 @@ public class Pronosticos {
         }
 
     }
-    public int puntos(Partidos partido){
+    public int puntos(Partidos partido, int puntaje){
 
         int puntos = 0;
         Resultadosenumerados resultadoRealParaEquipo = partido.resultado();
         if(resultadoRealParaEquipo == this.resultado) {
-            puntos = 1;
+            puntos = puntaje;
         }
 
         return puntos;

@@ -1,3 +1,5 @@
+package pronostico;
+
 public class Partidos {
     private Equipo equipo1;
     private Equipo equipo2;

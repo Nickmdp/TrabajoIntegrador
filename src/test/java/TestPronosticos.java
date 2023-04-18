@@ -1,3 +1,6 @@
+import pronostico.Equipo;
+import pronostico.Partidos;
+import pronostico.Resultadosenumerados;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
