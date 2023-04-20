@@ -2,16 +2,8 @@ package pronostico;
 
 public class Pronosticos {
     private Equipo equipo1;
-    //private String gana1;
-    //private String empata;
-    //private String gana2;
-    private Equipo equipo2;
+     private Equipo equipo2;
     private Participante participante;
-
-  /*  public Resultadosenumerados getResultado() {
-        return resultado;
-    }
-*/
     private Resultadosenumerados resultado;
 
     public Participante getParticipante() {
@@ -25,9 +17,6 @@ public class Pronosticos {
     }
     public Pronosticos(Equipo equipo1, String gana1, String empata, String gana2, Equipo equipo2,Participante participante) {
         this.equipo1 = equipo1;
-        //this.gana1 = gana1;
-        //this.empata = empata;
-        //this.gana2 = gana2;
         this.equipo2 = equipo2;
         this.participante=participante;
 

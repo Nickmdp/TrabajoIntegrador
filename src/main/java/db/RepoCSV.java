@@ -29,6 +29,7 @@ public class RepoCSV {
                             player = new Participante(split[0],split[1]);
                             participante.add(player);
                         }
+                        // Se podria validar que se informe algun valor para resultado, que no se informe mas de uno
                         pron.add(new Pronosticos(repoEquipo.get(split[2]), split[3], split[4], split[5], repoEquipo.get(split[6]), player));
 
                     }

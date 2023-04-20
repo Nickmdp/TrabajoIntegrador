@@ -26,7 +26,6 @@ public class Partidos {
             return Resultadosenumerados.GANA;
         } else if (this.goles1<this.goles2) {
             return Resultadosenumerados.PIERDE;
-
         } else
             return Resultadosenumerados.EMPATA;
     }
