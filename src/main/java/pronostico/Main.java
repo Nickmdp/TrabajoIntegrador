@@ -1,5 +1,6 @@
 package pronostico;
 
+import db.RepoCSV;
 import db.RepositorioPartidos;
 
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class Main {
      // Los resultados se leen de la Base de Datos
         List<Ronda> rondas = RepositorioPartidos.LeerPartidosdb();
     // Los pronosticos los leo del argumento
-        LeerPronosticos(archPronosticos, pron, participante);
+        RepoCSV.LeerPronosticos(archPronosticos, pron, participante);
 
 
         Integer sumatotal = 0;
@@ -39,7 +40,7 @@ public class Main {
                     Partidos partido = ronda.getPartidos().get(n);
                     if (pronostico.getEquipo2().getNombre().equals(partido.getEquipo2().getNombre()) &&
                             pronostico.getEquipo1().getNombre().equals(partido.getEquipo1().getNombre())) {
-                        Participante player = buscarParticipantePorId(pronostico.getParticipante().getIdparticipante() , participante);
+                        Participante player = RepoCSV.buscarParticipantePorId(pronostico.getParticipante().getIdparticipante() , participante);
                         player.sumaPuntos(pronostico.puntos(partido,puntaje));
                         sumatotal += pronostico.puntos(partido,puntaje);
                      //   System.out.println(pronostico.getParticipante().getNombre()+pronostico.getResultado() + " " + partido.resultado() + "pronostico " + pronostico.getEquipo1().getNombre() + " " +
@@ -53,40 +54,5 @@ public class Main {
         }
     }
 
-    private static void LeerPronosticos(Path archPronosticos, List<Pronosticos> pron, List<Participante> participante) {
-        try {
-            List<String> lineasArch = Files.readAllLines(archPronosticos);
-            boolean primero = true;
-            //Integer j = 0, i = 0;
-            for (String linea : lineasArch) {
-                if (primero) {
-                    primero = false;
-                } else {
-                    if (!linea.isBlank()) {
-                        String[] split = linea.split(";");
-                        Participante player = buscarParticipantePorId(split[0], participante);
-                        if (player == null) {
-                            player = new Participante(split[0],split[1]);
-                            participante.add(player);
-                        }
-                        pron.add(new Pronosticos(repoEquipo.get(split[2]), split[3], split[4], split[5], repoEquipo.get(split[6]), player));
 
-                    }
-                }
-            }
-            } catch(IOException e){
-                System.out.println("Fallo la apertura del archivo pronosticos");
-                System.exit(1);
-            }
-        }
-
-    private static Participante buscarParticipantePorId (String id, List < Participante > participante){
-        Optional<Participante> supuestoParticipante = Optional.ofNullable(participante.stream().filter(a -> a.getIdparticipante().equals(id)).findFirst().orElse(null));
-        if (!supuestoParticipante.isPresent()) {
-            Participante p2 = null;
-            return p2;
-        }
-        Participante participante1 = supuestoParticipante.get();
-        return participante1;
-    }
 }
